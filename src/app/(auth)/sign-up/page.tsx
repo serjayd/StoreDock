@@ -1,5 +1,44 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import SignUpForm from "@/features/auth/components/sign-up-form";
+import { ArrowLeft } from "lucide-react";
+
+import Link from "next/link";
 
 export default function SignUpPage() {
-  return <div>SignUpPage</div>;
+  return (
+    <section className="w-full max-w-sm">
+      <Link
+        href="/"
+        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-6"
+      >
+        <ArrowLeft className="size-4" /> <span>Back to Home</span>
+      </Link>
+      <div className="bg-secondary/50 flex rounded-xl p-1 mb-8">
+        <Button variant="ghost" asChild>
+          <Link
+            href="/sign-in"
+            className="w-1/2 text-muted-foreground hover:text-white transition-colors"
+          >
+            Sign In
+          </Link>
+        </Button>
+        <Button variant="secondary" asChild>
+          <Link href="/sign-up" className="w-1/2">
+            Create Account
+          </Link>
+        </Button>
+      </div>
+      <div className="mb-4">
+        <h2 className="mb-1 text-lg font-medium">Start for Free</h2>
+        <p className="text-muted-foreground">No credit card required</p>
+      </div>
+      <SignUpForm />
+      <p className="text-muted-foreground text-sm text-center">
+        Already have an account?{" "}
+        <Link href="/sign-in" className="text-accent hover:underline">
+          Sign In
+        </Link>
+      </p>
+    </section>
+  );
 }
