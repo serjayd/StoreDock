@@ -3,7 +3,7 @@
 import Container from "../../shared/Container";
 import Link from "next/link";
 import { Button } from "../../ui/button";
-import { Menu, Sailboat } from "lucide-react";
+import { Cuboid, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { TUser } from "@/types/user";
 import { motion } from "motion/react";
@@ -38,7 +38,7 @@ export default function HeaderClient({ user }: HeaderProps) {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-accent">
-            <Sailboat className="text-black" />
+            <Cuboid className="text-primary-foreground" />
           </div>
           <span className="font-semibold text-base tracking-tight">
             StoreDock
@@ -47,13 +47,22 @@ export default function HeaderClient({ user }: HeaderProps) {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="#" className="opacity-60 hover:opacity-100">
+          <Link
+            href="#"
+            className="text-muted-foreground hover:text-white transition-colors"
+          >
             Features
           </Link>
-          <Link href="#" className="opacity-60 hover:opacity-100">
+          <Link
+            href="#"
+            className="text-muted-foreground hover:text-white transition-colors"
+          >
             Pricing
           </Link>
-          <Link href="#" className="opacity-60 hover:opacity-100">
+          <Link
+            href="#"
+            className="text-muted-foreground hover:text-white transition-colors"
+          >
             Testimonials
           </Link>
         </nav>

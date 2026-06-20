@@ -1,4 +1,4 @@
-import { Check, Sailboat } from "lucide-react";
+import { Check, Cuboid } from "lucide-react";
 import Link from "next/link";
 
 interface AuthLayoutProps {
@@ -21,7 +21,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         <div className="relative">
           <Link href="/" className="mb-12 flex items-center gap-2">
             <div className="flex size-8 items-center justify-center rounded-lg bg-accent">
-              <Sailboat className="text-black" />
+              <Cuboid className="text-primary-foreground" />
             </div>
             <span className="text-base font-semibold tracking-tight">
               StoreDock

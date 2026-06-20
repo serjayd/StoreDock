@@ -1,5 +1,5 @@
 import Sidebar from "@/components/layout/sidebar/Sidebar";
-import { requireSession } from "@/lib/auth-server";
+import { requireSession } from "@/lib/session";
 
 interface PrivateLayoutProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/auth-server";
+import { getSession } from "@/lib/session";
 import HeaderClient from "./HeaderClient";
 
 export default async function Header() {
