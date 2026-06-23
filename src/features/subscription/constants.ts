@@ -1,0 +1,45 @@
+import { TTier } from "./types";
+
+export const TIERS: TTier[] = [
+  {
+    id: "free",
+    priceId: null,
+    label: "Free",
+    value: "£0",
+    valueLabel: "forever",
+    description: "Get started with one location.",
+    items: [
+      "1 store",
+      "3 shelves per store",
+      "Unlimited products",
+      "Dashboard analytics",
+      "Low-stock alerts",
+      "Store templates",
+    ],
+    buttonText: "Start Free",
+    buttonActiveSubscriptionText: "Downgrade to Free",
+    isSelected: false,
+  },
+  {
+    id: "premium",
+    priceId: "premium",
+    label: "Premium",
+    value: "£19.99",
+    valueLabel: "/ month",
+    description: "For growing businesses with multiple locations.",
+    items: [
+      "Unlimited stores",
+      "Unlimited shelves",
+      "Unlimited products",
+      "Advanced analytics",
+      "Priority alerts",
+      "All store templates",
+      "Data export (CSV)",
+      "Priority support",
+    ],
+    buttonText: "Upgrade to Premium",
+    buttonActiveSubscriptionText: "Manage Subscription",
+    isSelected: true,
+    isPopular: true,
+  },
+];
