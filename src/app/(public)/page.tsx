@@ -3,10 +3,12 @@ import Stats from "@/features/home/components/Stats";
 import Features from "@/features/home/components/Features";
 import Shelves from "@/features/home/components/Shelves";
 import Testimonials from "@/features/home/components/Testimonials";
-import Pricing from "@/features/home/components/Pricing";
+import Pricing from "@/features/subscription/components/Pricing";
 import Banner from "@/features/home/components/Banner";
+import { getSession } from "@/lib/session";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getSession();
   return (
     <>
       <Hero />
@@ -14,7 +16,7 @@ export default function HomePage() {
       <Features />
       <Shelves />
       <Testimonials />
-      <Pricing />
+      <Pricing session={session} />
       <Banner />
     </>
   );

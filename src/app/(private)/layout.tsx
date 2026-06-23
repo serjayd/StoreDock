@@ -9,9 +9,9 @@ export default async function PrivateLayout({ children }: PrivateLayoutProps) {
   await requireSession();
 
   return (
-    <div>
+    <div className="flex min-h-screen">
       <Sidebar />
-      <main>{children}</main>
+      <main className="flex-1 p-6">{children}</main>
     </div>
   );
 }

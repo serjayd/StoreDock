@@ -8,7 +8,7 @@ export async function getSession() {
     headers: await headers(),
   });
 
-  return session?.user ?? null;
+  return session;
 }
 
 // Strict Check
@@ -17,7 +17,7 @@ export async function requireSession() {
     headers: await headers(),
   });
 
-  if (!session?.user) {
+  if (!session || !session?.user) {
     redirect("/sign-in");
   }
 
