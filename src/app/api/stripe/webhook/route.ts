@@ -17,7 +17,12 @@ export async function POST(req: NextRequest) {
       signature,
       STRIPE_WEBHOOK_SECRET,
     );
+  } catch (error) {
+    console.error("Webhook error: ", error);
+    return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+  }
 
+  try {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
@@ -95,9 +100,14 @@ export async function POST(req: NextRequest) {
 
       default:
         console.log(`Unhandled event type: ${event.type}`);
+        return NextResponse.json({ received: true }, { status: 200 });
     }
+    return NextResponse.json({ received: true }, { status: 200 });
   } catch (error) {
-    console.error("Webhook error: ", error);
-    return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+    console.error("Error processing webhook: ", error);
+    return NextResponse.json(
+      { error: "Error processing webhook" },
+      { status: 500 },
+    );
   }
 }
