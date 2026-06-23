@@ -5,15 +5,15 @@ import Link from "next/link";
 import { Button } from "../../ui/button";
 import { Cuboid, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
-import { TUser } from "@/types/user";
+import { TSession } from "@/types/user";
 import { motion } from "motion/react";
 import HeaderMobile from "./HeaderMobile";
 
 interface HeaderProps {
-  user: TUser | null;
+  session: TSession;
 }
 
-export default function HeaderClient({ user }: HeaderProps) {
+export default function HeaderClient({ session }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -38,7 +38,7 @@ export default function HeaderClient({ user }: HeaderProps) {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-accent">
-            <Cuboid className="text-primary-foreground" />
+            <Cuboid className="text-primary-foreground size-5" />
           </div>
           <span className="font-semibold text-base tracking-tight">
             StoreDock
@@ -69,7 +69,7 @@ export default function HeaderClient({ user }: HeaderProps) {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          {!user ? (
+          {!session?.user ? (
             <>
               <Button variant="ghost" asChild>
                 <Link href="/sign-in">Sign In</Link>
@@ -93,7 +93,7 @@ export default function HeaderClient({ user }: HeaderProps) {
           <Menu className="size-5" />
         </Button>
       </Container>
-      {menuOpen && <HeaderMobile user={user} />}
+      {menuOpen && <HeaderMobile session={session} />}
     </motion.header>
   );
 }

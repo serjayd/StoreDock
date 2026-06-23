@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { TUser } from "@/types/user";
+import { TSession } from "@/types/user";
 import Link from "next/link";
-import React from "react";
 
-interface HeaderProps {
-  user: TUser | null;
+interface HeaderMobileProps {
+  session: TSession;
 }
 
-export default function HeaderMobile({ user }: HeaderProps) {
+export default function HeaderMobile({ session }: HeaderMobileProps) {
   return (
     <div className="md:hidden p-6 space-y-4 border-t bg-background/95">
       <div className="flex flex-col gap-4">
@@ -22,7 +21,7 @@ export default function HeaderMobile({ user }: HeaderProps) {
         </Link>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        {!user ? (
+        {!session?.user ? (
           <>
             <Button variant="outline" asChild className="w-full">
               <Link href="/sign-in">Sign In</Link>
