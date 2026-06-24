@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 
 export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
     <motion.aside

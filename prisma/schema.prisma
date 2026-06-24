@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -15,6 +10,21 @@ datasource db {
 enum Plan {
   free
   premium
+}
+
+enum ProductStatus {
+  InStock
+  LowStock
+  OutOfStock
+}
+
+enum StoreType {
+  Grocery
+  Pet
+  Toy
+  Vape
+  Electronics
+  Custom
 }
 
 model User {
@@ -35,8 +45,48 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  stores Store[]
+
   @@unique([email])
   @@map("user")
+}
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  type      StoreType
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shelves   Shelf[]
+
+  @@map("store")
+}
+
+model Shelf {
+  id        String    @id @default(cuid())
+  name      String
+  
+  storeId   String
+  store     Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  products  Product[]
+
+  @@map("shelf")
+}
+
+model Product {
+  id        String        @id @default(cuid())
+  name      String
+  sku       String        // SKU-0001
+  price     Int
+  stock     Int
+  status    ProductStatus
+  
+  shelveId  String
+  shelf    Shelf        @relation(fields: [shelveId], references: [id], onDelete: Cascade)
+
+  @@map("product")
 }
 
 model Session {
