@@ -49,7 +49,6 @@ export default function SubscriptionContent({
         )}
       </motion.div>
 
-      {/* Info Card Анимация */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
