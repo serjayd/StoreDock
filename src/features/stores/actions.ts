@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/session";
 import { storeSchema } from "./schema";
+import { revalidatePath } from "next/cache";
 
 export async function createStore(data: unknown) {
   const parsed = storeSchema.safeParse(data);
@@ -34,9 +35,71 @@ export async function createStore(data: unknown) {
       },
     });
 
+    revalidatePath("/stores");
     return { success: true, store };
   } catch (error) {
     console.error(error);
     return { error: "Something went wrong while creating the store." };
   }
+}
+
+export async function setActiveStore(storeId: string) {
+  const session = await requireSession();
+
+  const store = await prisma.store.findFirst({
+    where: {
+      id: storeId,
+      userId: session.user.id,
+    },
+  });
+
+  if (!store) {
+    return { error: "Store not found." };
+  }
+
+  await prisma.$transaction([
+    prisma.store.updateMany({
+      where: {
+        userId: session.user.id,
+      },
+      data: {
+        isActive: false,
+      },
+    }),
+
+    prisma.store.update({
+      where: {
+        id: storeId,
+      },
+      data: {
+        isActive: true,
+      },
+    }),
+  ]);
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
+export async function deleteStore(storeId: string) {
+  const session = await requireSession();
+
+  const store = await prisma.store.findFirst({
+    where: {
+      id: storeId,
+      userId: session.user.id,
+    },
+  });
+
+  if (!store) {
+    return { error: "Store not found." };
+  }
+
+  await prisma.store.delete({
+    where: {
+      id: storeId,
+    },
+  });
+
+  revalidatePath("/stores");
+  return { success: true };
 }

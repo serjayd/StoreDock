@@ -1,40 +1,10 @@
-"use client";
-import Container from "@/components/shared/Container";
-import { Button } from "@/components/ui/button";
-import CreateStoreForm from "@/features/stores/components/create-store-form";
+import StoresClientWrapper from "@/features/stores/components/StoresClientWrapper";
 import StoresContainer from "@/features/stores/components/StoresContainer";
-import { Plus } from "lucide-react";
-import { motion } from "motion/react";
-import { useState } from "react";
 
-export default function StoresPage() {
-  const [addStoreOpen, setAddStoreOpen] = useState(false);
+export default async function StoresPage() {
   return (
-    <section>
-      <Container>
-        <motion.div
-          className="mb-8 flex items-center justify-between gap-2 flex-wrap"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-1">My Stores</h1>
-            <p className="text-muted-foreground">3 of unlimited stores</p>
-          </div>
-          <Button
-            onClick={() => setAddStoreOpen((prev) => !prev)}
-            variant="default"
-            size="lg"
-            className="px-4 cursor-pointer"
-          >
-            <Plus />
-            <span>Add Store</span>
-          </Button>
-        </motion.div>
-        <StoresContainer />
-      </Container>
-      {addStoreOpen && <CreateStoreForm setAddStoreOpen={setAddStoreOpen} />}
-    </section>
+    <StoresClientWrapper>
+      <StoresContainer />
+    </StoresClientWrapper>
   );
 }
