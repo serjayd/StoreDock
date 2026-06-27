@@ -41,13 +41,13 @@ export default function ProductsClientWrapper({
   }, [allProducts, search, status, shelfId]);
 
   return (
-    <div className="overflow-hidden">
+    <div>
       <Container>
         <section className="mb-8 flex items-center justify-between gap-2 flex-wrap">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-1">Products</h1>
             <p className="text-muted-foreground">
-              20 products across 7 shelves
+              {allProducts.length} products across {shelves.length} shelves
             </p>
           </div>
           <Button

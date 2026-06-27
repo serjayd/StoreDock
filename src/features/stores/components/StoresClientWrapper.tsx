@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
@@ -19,12 +18,7 @@ export default function StoresClientWrapper({
   return (
     <section>
       <Container>
-        <motion.div
-          className="mb-8 flex items-center justify-between gap-2 flex-wrap"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="mb-8 flex items-center justify-between gap-2 flex-wrap">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-1">My Stores</h1>
             <p className="text-muted-foreground">Manage your business stores</p>
@@ -38,7 +32,7 @@ export default function StoresClientWrapper({
             <Plus />
             <span>Add Store</span>
           </Button>
-        </motion.div>
+        </div>
         {children}
       </Container>
       {addStoreOpen && <CreateStoreForm setAddStoreOpen={setAddStoreOpen} />}

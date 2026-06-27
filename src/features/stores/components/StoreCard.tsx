@@ -2,12 +2,20 @@ import { MapPin } from "lucide-react";
 
 import DeleteStoreButton from "./DeleteStoreButton";
 import { TStoreWithShelves } from "@/types/store";
+import { TProduct } from "@/types/products";
 
 interface StoreCardProps {
   store: TStoreWithShelves;
+  products: TProduct[];
 }
 
-export default function StoreCard({ store }: StoreCardProps) {
+export default function StoreCard({ store, products }: StoreCardProps) {
+  const totalProducts = products.length;
+
+  const lowStock = products.filter((p) => p.status === "LowStock").length;
+
+  const outOfStock = products.filter((p) => p.status === "OutOfStock").length;
+
   return (
     <div
       className={`bg-card rounded-2xl border ${store.isActive && "border-chart-1/70"}`}
@@ -30,6 +38,20 @@ export default function StoreCard({ store }: StoreCardProps) {
         </div>
       </div>
       {/* Content */}
+      <div className="grid grid-cols-3 divide-x">
+        <div className="px-4 py-3 text-center">
+          <p>{totalProducts}</p>
+          <span className="text-xs text-muted-foreground">Products</span>
+        </div>
+        <div className="px-4 py-3 text-center">
+          <p className="text-chart-3 font-semibold">{lowStock}</p>
+          <span className="text-xs text-muted-foreground">Low Stock</span>
+        </div>
+        <div className="px-4 py-3 text-center">
+          <p className="text-chart-5 font-semibold">{outOfStock}</p>
+          <span className="text-xs text-muted-foreground">Out Of Stock</span>
+        </div>
+      </div>
       {/* CTA */}
     </div>
   );
