@@ -7,13 +7,13 @@ import { useMemo, useState } from "react";
 import AddProductForm from "./AddProductForm";
 import { TShelf } from "@/types/shelves";
 import ProductsTable from "./ProductsTable";
-import { TProduct } from "@/types/products";
+import { TProductWithShelf } from "@/types/products";
 import EditProductForm from "./EditProductForm";
 import FilterProducts from "./FilterProducts";
 
 interface ProductsClientWrapperProps {
   shelves: TShelf[];
-  allProducts: TProduct[];
+  allProducts: TProductWithShelf[];
 }
 
 export default function ProductsClientWrapper({
@@ -21,7 +21,8 @@ export default function ProductsClientWrapper({
   allProducts,
 }: ProductsClientWrapperProps) {
   const [addProductOpen, setAddProductOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<TProduct | null>(null);
+  const [editingProduct, setEditingProduct] =
+    useState<TProductWithShelf | null>(null);
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<string>("all");

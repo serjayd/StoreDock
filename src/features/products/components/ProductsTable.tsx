@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { SquarePen } from "lucide-react";
 import { productStatusLabel, productStatusStyles } from "../constants";
 import DeleteProductButton from "./DeleteProductButton";
-import { TProduct } from "@/types/products";
+import { TProductWithShelf } from "@/types/products";
 
 const TABLE_HEAD_ROWS = [
   "Product",
@@ -15,8 +15,8 @@ const TABLE_HEAD_ROWS = [
 ];
 
 interface ProductsTableProps {
-  allProducts: TProduct[];
-  setEditingProduct: (p: TProduct) => void;
+  allProducts: TProductWithShelf[];
+  setEditingProduct: (p: TProductWithShelf) => void;
 }
 
 export default function ProductsTable({
