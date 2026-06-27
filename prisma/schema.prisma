@@ -56,10 +56,12 @@ model Store {
   name      String
   address   String
   type      StoreType
+  isActive  Boolean  @default(false)
   
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   shelves   Shelf[]
+  products  Product[]
 
   @@map("store")
 }
@@ -76,15 +78,20 @@ model Shelf {
 }
 
 model Product {
-  id        String        @id @default(cuid())
-  name      String
-  sku       String        // SKU-0001
-  price     Int
-  stock     Int
-  status    ProductStatus
-  
-  shelveId  String
-  shelf    Shelf        @relation(fields: [shelveId], references: [id], onDelete: Cascade)
+  id       String        @id @default(cuid())
+  name     String
+  sku      String
+  price    Int
+  stock    Int
+  status   ProductStatus
+
+  shelfId  String
+  shelf    Shelf @relation(fields: [shelfId], references: [id], onDelete: Cascade)
+
+  storeId  String
+  store    Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([shelfId, sku])
 
   @@map("product")
 }

@@ -20,14 +20,14 @@ export const SIDEBAR_LINKS = [
     link: "/stores",
   },
   {
-    icon: Package,
-    label: "Products",
-    link: "/products",
-  },
-  {
     icon: Layers,
     label: "Shelves",
     link: "/shelves",
+  },
+  {
+    icon: Package,
+    label: "Products",
+    link: "/products",
   },
   {
     icon: Bell,
