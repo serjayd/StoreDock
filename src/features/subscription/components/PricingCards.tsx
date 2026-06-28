@@ -11,12 +11,14 @@ interface PricingCardProps {
   tiers: TTier[];
   session?: TSession | null;
   user?: TUser;
+  variant?: "landing" | "billing";
 }
 
 export default function PricingCards({
   tiers,
   session,
   user,
+  variant = "landing",
 }: PricingCardProps) {
   const router = useRouter();
 
@@ -141,24 +143,26 @@ export default function PricingCards({
             </div>
 
             {/* CTA */}
-            <Button
-              onClick={
-                !user || user.plan === "free"
-                  ? () => handleSubscribe(el.priceId)
-                  : () => handleManageSubscription()
-              }
-              size="lg"
-              type="button"
-              variant={el.isSelected === true ? "default" : "outline"}
-              className={`
-                    w-full z-1 cursor-pointer
-                    ${el.isSelected ? "bg-chart-4 hover:bg-chart-4/80 text-white" : ""}
-                  `}
-            >
-              {!user || user.plan === "free"
-                ? el.buttonText
-                : el.buttonActiveSubscriptionText}
-            </Button>
+            {variant === "billing" && (
+              <Button
+                onClick={
+                  !user || user.plan === "free"
+                    ? () => handleSubscribe(el.priceId)
+                    : () => handleManageSubscription()
+                }
+                size="lg"
+                type="button"
+                variant={el.isSelected === true ? "default" : "outline"}
+                className={`
+      w-full z-1 cursor-pointer
+      ${el.isSelected ? "bg-chart-4 hover:bg-chart-4/80 text-white" : ""}
+    `}
+              >
+                {!user || user.plan === "free"
+                  ? el.buttonText
+                  : el.buttonActiveSubscriptionText}
+              </Button>
+            )}
           </motion.div>
         );
       })}

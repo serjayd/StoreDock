@@ -11,7 +11,7 @@ export type TUser = {
   stripeSubscriptionId: string | null;
   stripePriceId: string | null;
   stripeCurrentPeriodEnd: Date | null;
-} | null;
+};
 
 export type TSession = {
   session: {

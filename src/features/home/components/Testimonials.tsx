@@ -29,7 +29,7 @@ const REVIEWS = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20">
+    <section id="testimonials" className="py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

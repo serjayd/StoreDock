@@ -5,16 +5,20 @@ import { motion } from "motion/react";
 import { Cuboid, PanelLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import ActiveStoreTabs from "./active-store-tabs";
 import SidebarNav from "./sidebar-nav";
 import { TStore } from "@/types/store";
+import SidebarStores from "./sidebar-stores";
+import SidebarUser from "./sidebar-user";
+import { TUser } from "@/types/user";
 
 interface SidebarClientLayoutProps {
   stores: TStore[];
+  user: TUser | null;
 }
 
 export default function SidebarClientLayout({
   stores,
+  user,
 }: SidebarClientLayoutProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -29,7 +33,7 @@ export default function SidebarClientLayout({
         duration: 0.3,
         ease: "easeInOut",
       }}
-      className="border-r bg-sidebar"
+      className="border-r bg-sidebar h-screen flex flex-col"
     >
       <div className="p-4 border-b flex items-center justify-between">
         {!isCollapsed && (
@@ -49,9 +53,11 @@ export default function SidebarClientLayout({
         </Button>
       </div>
 
-      <ActiveStoreTabs stores={stores} isCollapsed={isCollapsed} />
-
-      <SidebarNav isCollapsed={isCollapsed} />
+      <div className="flex flex-col flex-1">
+        <SidebarStores stores={stores} isCollapsed={isCollapsed} />
+        <SidebarNav isCollapsed={isCollapsed} />
+      </div>
+      <SidebarUser user={user} isCollapsed={isCollapsed} />
     </motion.aside>
   );
 }

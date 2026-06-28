@@ -43,7 +43,7 @@ export default function SignInForm() {
       return;
     }
 
-    toast.success("Successfully created an account!");
+    toast.success("Successfully signed in!");
 
     router.push("/dashboard");
     router.refresh();

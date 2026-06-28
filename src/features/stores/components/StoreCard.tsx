@@ -2,19 +2,21 @@ import { MapPin } from "lucide-react";
 
 import DeleteStoreButton from "./DeleteStoreButton";
 import { TStoreWithShelves } from "@/types/store";
-import { TProduct } from "@/types/products";
 
 interface StoreCardProps {
   store: TStoreWithShelves;
-  products: TProduct[];
 }
 
-export default function StoreCard({ store, products }: StoreCardProps) {
-  const totalProducts = products.length;
+export default function StoreCard({ store }: StoreCardProps) {
+  const totalProducts = store.products?.length;
 
-  const lowStock = products.filter((p) => p.status === "LowStock").length;
+  const lowStock = store.products?.filter(
+    (p) => p.status === "LowStock",
+  ).length;
 
-  const outOfStock = products.filter((p) => p.status === "OutOfStock").length;
+  const outOfStock = store.products?.filter(
+    (p) => p.status === "OutOfStock",
+  ).length;
 
   return (
     <div

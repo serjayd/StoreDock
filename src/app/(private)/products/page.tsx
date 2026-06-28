@@ -18,6 +18,10 @@ export default async function ProductsPage() {
     },
   });
 
+  if (!store) {
+    return <ProductsClientWrapper shelves={[]} allProducts={[]} />;
+  }
+
   const allProducts = await prisma.product.findMany({
     where: {
       storeId: store?.id,

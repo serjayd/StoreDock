@@ -74,7 +74,12 @@ export default function CreateStoreForm({
       shelves: shelves ?? [],
     };
 
-    await createStore(payload);
+    const result = await createStore(payload);
+
+    if (result.error) {
+      toast.error(result.error);
+      return;
+    }
 
     reset();
     setAddStoreOpen(false);
@@ -238,5 +243,3 @@ export default function CreateStoreForm({
     </div>
   );
 }
-
-// ADD LIMITS IF FREE OR PREMIUM

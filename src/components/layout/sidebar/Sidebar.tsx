@@ -14,5 +14,11 @@ export default async function Sidebar() {
     },
   });
 
-  return <SidebarClientWrapper stores={stores} />;
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session?.user.id,
+    },
+  });
+
+  return <SidebarClientWrapper stores={stores} user={user} />;
 }

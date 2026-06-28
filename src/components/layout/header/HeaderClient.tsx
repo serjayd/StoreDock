@@ -48,19 +48,19 @@ export default function HeaderClient({ session }: HeaderProps) {
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <Link
-            href="#"
+            href="#features"
             className="text-muted-foreground hover:text-white transition-colors"
           >
             Features
           </Link>
           <Link
-            href="#"
+            href="#pricing"
             className="text-muted-foreground hover:text-white transition-colors"
           >
             Pricing
           </Link>
           <Link
-            href="#"
+            href="#testimonials"
             className="text-muted-foreground hover:text-white transition-colors"
           >
             Testimonials

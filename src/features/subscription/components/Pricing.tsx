@@ -11,7 +11,7 @@ interface PricingProps {
 
 export default function Pricing({ session }: PricingProps) {
   return (
-    <section className="border-t py-20 px-4">
+    <section id="pricing" className="border-t py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
@@ -35,7 +35,7 @@ export default function Pricing({ session }: PricingProps) {
         </motion.div>
 
         {/* Cards */}
-        <PricingCards tiers={TIERS} session={session} />
+        <PricingCards tiers={TIERS} session={session} variant="landing" />
 
         {/* Footer note */}
         <motion.p

@@ -9,6 +9,7 @@ import { getSession } from "@/lib/session";
 
 export default async function HomePage() {
   const session = await getSession();
+
   return (
     <>
       <Hero />
@@ -17,7 +18,7 @@ export default async function HomePage() {
       <Shelves />
       <Testimonials />
       <Pricing session={session} />
-      <Banner />
+      <Banner session={session} />
     </>
   );
 }

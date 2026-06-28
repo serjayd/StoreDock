@@ -4,8 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { TSession } from "@/types/user";
 
-export default function Banner() {
+interface BannerProps {
+  session: TSession;
+}
+
+export default function Banner({ session }: BannerProps) {
   return (
     <section className="py-24">
       <div className="max-w-4xl px-4 mx-auto text-center relative">
@@ -49,23 +54,37 @@ export default function Banner() {
           </motion.p>
 
           {/* Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            <Button size="lg" asChild>
-              <Link href="/sign-up">
-                Create free account <ArrowRight />
-              </Link>
-            </Button>
+          {!session?.user ? (
+            <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <Button size="lg" asChild>
+                <Link href="/sign-up">
+                  Create free account <ArrowRight />
+                </Link>
+              </Button>
 
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/sign-in">Sign in</Link>
-            </Button>
-          </motion.div>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/sign-in">Sign in</Link>
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <Button size="lg" asChild>
+                <Link href="/dashboard">View Dashboard</Link>
+              </Button>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

@@ -7,7 +7,7 @@ import PricingCards from "./PricingCards";
 import { TIERS } from "../constants";
 
 interface SubscriptionContentProps {
-  user: TUser;
+  user: TUser | null;
   session: TSession;
 }
 
@@ -96,7 +96,12 @@ export default function SubscriptionContent({
         </span>
       </motion.div>
 
-      <PricingCards tiers={TIERS} user={user || undefined} session={session} />
+      <PricingCards
+        tiers={TIERS}
+        user={user || undefined}
+        session={session}
+        variant="billing"
+      />
     </>
   );
 }

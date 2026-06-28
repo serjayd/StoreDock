@@ -1,5 +1,6 @@
 import { StoreType } from "@/features/stores/schema";
 import { TShelf } from "./shelves";
+import { TProduct } from "./products";
 
 export type TStore = {
   id: string;
@@ -18,4 +19,5 @@ export type TStoreWithShelves = {
   address: string;
   isActive: boolean;
   shelves?: TShelf[];
+  products?: TProduct[];
 };

@@ -12,14 +12,15 @@ export default async function ShelvesPage() {
       userId: session.user.id,
       isActive: true,
     },
-    include: {
-      shelves: true,
-    },
   });
+
+  if (!store) {
+    return <ShelvesClientWrapper allShelves={[]} />;
+  }
 
   const allShelves = await prisma.shelf.findMany({
     where: {
-      storeId: store?.id,
+      storeId: store.id,
     },
     include: {
       products: true,
@@ -28,5 +29,6 @@ export default async function ShelvesPage() {
       name: "asc",
     },
   });
+
   return <ShelvesClientWrapper allShelves={allShelves} />;
 }

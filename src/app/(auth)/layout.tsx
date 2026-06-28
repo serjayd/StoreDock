@@ -1,5 +1,7 @@
+import { getSession } from "@/lib/session";
 import { Check, Cuboid } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -13,7 +15,12 @@ const FEATURES = [
   "Store templates for fast setup",
 ];
 
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default async function AuthLayout({ children }: AuthLayoutProps) {
+  const session = await getSession();
+
+  if (session?.user?.id) {
+    redirect("/");
+  }
   return (
     <div className="flex min-h-screen">
       <section className="relative hidden w-120 shrink-0 flex-col justify-between overflow-hidden bg-sidebar px-12 py-12 lg:flex">
