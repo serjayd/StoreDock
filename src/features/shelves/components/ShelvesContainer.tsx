@@ -141,6 +141,18 @@ export default function ShelvesContainer({
           </div>
         );
       })}
+      {allShelves.length === 0 && (
+        <div className="bg-card p-4 rounded-2xl col-span-3 border text-muted-foreground">
+          <p className="text-center uppercase font-mono font-semibold">
+            No shelves found
+          </p>
+
+          <p className="text-center text-sm mt-2">
+            You haven&apos;t created any shelves yet.
+            <br /> Add your first shelf to start organizing products.
+          </p>
+        </div>
+      )}
     </section>
   );
 }

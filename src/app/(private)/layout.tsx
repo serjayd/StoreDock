@@ -10,11 +10,9 @@ export default async function PrivateLayout({ children }: PrivateLayoutProps) {
 
   return (
     <div className="flex min-h-screen">
-      <div className="fixed left-0 top-0 h-screen w-64 z-10">
-        <Sidebar />
-      </div>
+      <Sidebar />
 
-      <main className="flex-1 ml-16 h-screen overflow-y-auto p-6">
+      <main className="flex-1 ml-20 h-screen overflow-y-auto p-6">
         {children}
       </main>
     </div>

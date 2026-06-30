@@ -1,5 +1,5 @@
-export function getProductStatus(stock: number) {
+export function getProductStatus(stock: number, threshold: number) {
   if (stock <= 0) return "OutOfStock";
-  if (stock < 50) return "LowStock";
+  if (stock <= threshold) return "LowStock";
   return "InStock";
 }

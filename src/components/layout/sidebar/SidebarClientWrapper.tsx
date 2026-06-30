@@ -14,11 +14,13 @@ import { TUser } from "@/types/user";
 interface SidebarClientLayoutProps {
   stores: TStore[];
   user: TUser | null;
+  activeAlerts: number;
 }
 
 export default function SidebarClientLayout({
   stores,
   user,
+  activeAlerts,
 }: SidebarClientLayoutProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -33,7 +35,7 @@ export default function SidebarClientLayout({
         duration: 0.3,
         ease: "easeInOut",
       }}
-      className="border-r bg-sidebar h-screen flex flex-col"
+      className="border-r bg-sidebar h-screen flex flex-col fixed left-0 top-0 z-10"
     >
       <div className="p-4 border-b flex items-center justify-between">
         {!isCollapsed && (
@@ -55,7 +57,7 @@ export default function SidebarClientLayout({
 
       <div className="flex flex-col flex-1">
         <SidebarStores stores={stores} isCollapsed={isCollapsed} />
-        <SidebarNav isCollapsed={isCollapsed} />
+        <SidebarNav isCollapsed={isCollapsed} activeAlerts={activeAlerts} />
       </div>
       <SidebarUser user={user} isCollapsed={isCollapsed} />
     </motion.aside>

@@ -50,6 +50,7 @@ export async function createStore(data: unknown) {
         shelves: {
           create: shelves.map((shelf) => ({
             name: shelf.name,
+            lowStockThreshold: shelf.lowStockThreshold,
           })),
         },
       },

@@ -17,6 +17,7 @@ export const storeSchema = z.object({
     .array(
       z.object({
         name: z.string(),
+        lowStockThreshold: z.number(),
       }),
     )
     .optional(),

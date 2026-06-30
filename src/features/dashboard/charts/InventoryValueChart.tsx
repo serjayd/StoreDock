@@ -33,7 +33,7 @@ export default function InventoryValueChart({
       <CardHeader>
         <CardTitle>Inventory Value by Shelf</CardTitle>
         <CardDescription>
-          Dollar value of stocked products per shelf
+          Pound value of stocked products per shelf
         </CardDescription>
       </CardHeader>
 

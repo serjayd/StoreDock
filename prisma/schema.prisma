@@ -69,6 +69,7 @@ model Store {
 model Shelf {
   id        String    @id @default(cuid())
   name      String
+  lowStockThreshold Int @default(30)
   
   storeId   String
   store     Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)

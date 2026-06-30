@@ -17,7 +17,7 @@ export async function addProduct(data: unknown) {
   // 1. Get shelf + storeId
   const shelf = await prisma.shelf.findUnique({
     where: { id: shelfId },
-    select: { storeId: true },
+    select: { storeId: true, lowStockThreshold: true },
   });
 
   if (!shelf) {
@@ -25,6 +25,10 @@ export async function addProduct(data: unknown) {
   }
 
   const storeId = shelf.storeId;
+
+  const DEFAULT_LOW_STOCK_THRESHOLD = 30;
+
+  const threshold = shelf?.lowStockThreshold ?? DEFAULT_LOW_STOCK_THRESHOLD;
 
   // 2. Check duplicate SKU inside same shelf (or store if you prefer)
   const existingProduct = await prisma.product.findFirst({
@@ -50,7 +54,7 @@ export async function addProduct(data: unknown) {
         stock,
         shelfId,
         storeId,
-        status: getProductStatus(stock),
+        status: getProductStatus(stock, threshold),
       },
     });
 
@@ -103,7 +107,7 @@ export async function editProduct(productId: string, data: unknown) {
   try {
     const shelf = await prisma.shelf.findUnique({
       where: { id: shelfId },
-      select: { storeId: true },
+      select: { storeId: true, lowStockThreshold: true },
     });
 
     if (!shelf) {
@@ -123,6 +127,10 @@ export async function editProduct(productId: string, data: unknown) {
       return { error: "Unauthorized action" };
     }
 
+    const DEFAULT_LOW_STOCK_THRESHOLD = 30;
+
+    const threshold = shelf?.lowStockThreshold ?? DEFAULT_LOW_STOCK_THRESHOLD;
+
     const updated = await prisma.product.update({
       where: { id: productId },
       data: {
@@ -131,6 +139,7 @@ export async function editProduct(productId: string, data: unknown) {
         price,
         stock,
         shelfId,
+        status: getProductStatus(stock, threshold),
       },
       include: {
         shelf: true,

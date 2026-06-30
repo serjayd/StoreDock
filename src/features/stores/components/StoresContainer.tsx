@@ -25,6 +25,19 @@ export default async function StoresContainer() {
       {allStores.map((store) => (
         <StoreCard key={store.id} store={store} />
       ))}
+      {allStores.length === 0 && (
+        <div className="bg-card p-4 rounded-2xl col-span-3 border text-muted-foreground">
+          <p className="text-center uppercase font-mono font-semibold">
+            No stores found
+          </p>
+
+          <p className="text-center text-sm mt-2">
+            You haven&apos;t created any stores yet.
+            <br /> Add your first store to start organizing products, shelves,
+            and inventory.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

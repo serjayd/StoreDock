@@ -7,9 +7,13 @@ import { ChevronRight } from "lucide-react";
 
 interface SidebarNavProps {
   isCollapsed: boolean;
+  activeAlerts: number;
 }
 
-export default function SidebarNav({ isCollapsed }: SidebarNavProps) {
+export default function SidebarNav({
+  isCollapsed,
+  activeAlerts,
+}: SidebarNavProps) {
   const pathname = usePathname();
 
   return (
@@ -23,7 +27,7 @@ export default function SidebarNav({ isCollapsed }: SidebarNavProps) {
             <Link
               key={el.label}
               href={el.link}
-              className={`flex items-center gap-3 p-2 rounded-lg ${
+              className={`relative flex items-center gap-3 p-2 rounded-lg ${
                 activePage
                   ? "text-chart-1 bg-secondary"
                   : "text-muted-foreground hover:bg-secondary/50"
@@ -40,6 +44,20 @@ export default function SidebarNav({ isCollapsed }: SidebarNavProps) {
                   </span>
 
                   {activePage && <ChevronRight className="size-3.5 shrink-0" />}
+                  {el.hasAlerts === true && activeAlerts >= 1 && (
+                    <div className="absolute right-2 bg-chart-5 text-white text-[10px] px-1 rounded-full font-semibold min-w-1 text-center">
+                      {activeAlerts}
+                    </div>
+                  )}
+                </>
+              )}
+              {isCollapsed && (
+                <>
+                  {el.hasAlerts === true && activeAlerts >= 1 && (
+                    <div className="absolute right-2 top-0.5 bg-chart-5 text-white text-[10px] px-1 rounded-full font-semibold min-w-1 text-center">
+                      {activeAlerts}
+                    </div>
+                  )}
                 </>
               )}
             </Link>

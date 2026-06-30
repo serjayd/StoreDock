@@ -70,9 +70,18 @@ export default async function DashboardPage() {
     <Container>
       <section className="mb-8 flex items-center justify-between gap-2 flex-wrap">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-1">{store?.name}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-1">
+            {store?.name || "Welcome to StoreDock"}
+          </h1>
           <p className="text-muted-foreground">
-            {formattedDate} — Real-time inventory overview · {store?.name} Store
+            {store?.name ? (
+              <>
+                {formattedDate} — Real-time inventory overview · {store?.name}{" "}
+                Store
+              </>
+            ) : (
+              "Create a store for real-time inventory overview "
+            )}
           </p>
         </div>
       </section>

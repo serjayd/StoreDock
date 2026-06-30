@@ -33,6 +33,7 @@ export const SIDEBAR_LINKS = [
     icon: Bell,
     label: "Alerts",
     link: "/alerts",
+    hasAlerts: true,
   },
   {
     icon: CreditCard,
