@@ -32,3 +32,14 @@ export type TSession = {
     image?: string | null;
   };
 } | null;
+
+export type TSessionFull = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  expiresAt: Date;
+  token: string;
+  ipAddress: string | null;
+  userAgent: string | null;
+};

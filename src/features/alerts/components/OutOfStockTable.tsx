@@ -8,16 +8,21 @@ interface outOfStockTableProps {
 export default function OutOfStockTable({
   outOfStockProducts,
 }: outOfStockTableProps) {
+  if (outOfStockProducts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="border rounded-xl bg-card">
       <div className="w-full overflow-x-auto">
         <div className="flex flex-col divide-y">
-          <div className="flex items-center gap-3 p-4 bg-chart-5/10 rounded-tl-xl rounded-tr-xl">
+          <div className="flex items-center gap-3 p-4 bg-chart-5/10 rounded-t-xl">
             <CircleX className="size-5 text-chart-5" />
             <h2 className="text-chart-5 text-sm font-semibold">
               Out of Stock — {outOfStockProducts.length} items
             </h2>
           </div>
+
           {outOfStockProducts.map((p) => (
             <div
               key={p.id}
@@ -29,6 +34,7 @@ export default function OutOfStockTable({
                   {p.shelf.name} · <span className="font-mono">{p.sku}</span>
                 </p>
               </div>
+
               <div>
                 <p className="font-semibold text-chart-5 sm:text-end text-sm">
                   {p.stock} units
@@ -39,11 +45,6 @@ export default function OutOfStockTable({
               </div>
             </div>
           ))}
-          {outOfStockProducts.length === 0 && (
-            <p className="text-center text-sm mt-2 text-muted-foreground p-4 uppercase font-mono">
-              No products are completely out of stock right now.
-            </p>
-          )}
         </div>
       </div>
     </section>

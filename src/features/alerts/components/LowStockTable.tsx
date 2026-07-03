@@ -8,6 +8,9 @@ interface LowStockTableProps {
 export default function LowStockTable({
   lowStockProducts,
 }: LowStockTableProps) {
+  if (lowStockProducts.length === 0) {
+    return null;
+  }
   return (
     <section className="border rounded-xl bg-card">
       <div className="w-full overflow-x-auto">
@@ -39,11 +42,6 @@ export default function LowStockTable({
               </div>
             </div>
           ))}
-          {lowStockProducts.length === 0 && (
-            <p className="text-center text-sm mt-2 text-muted-foreground p-4 uppercase font-mono">
-              No products are currently running low on stock.
-            </p>
-          )}
         </div>
       </div>
     </section>

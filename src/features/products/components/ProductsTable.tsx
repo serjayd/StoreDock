@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SquarePen } from "lucide-react";
+import { Package, SquarePen } from "lucide-react";
 import { productStatusLabel, productStatusStyles } from "../constants";
 import DeleteProductButton from "./DeleteProductButton";
 import { TProductWithShelf } from "@/types/products";
@@ -100,7 +100,10 @@ export default function ProductsTable({
                   colSpan={7}
                   className="px-4 py-6 text-center font-medium font-mono uppercase text-muted-foreground"
                 >
-                  No Products Found
+                  <div className="flex flex-col justify-center items-center">
+                    <Package className="text-muted-foreground size-8 mb-2" />
+                    No Products Found
+                  </div>
                 </td>
               </tr>
             )}

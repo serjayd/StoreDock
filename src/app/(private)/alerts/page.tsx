@@ -3,7 +3,7 @@ import LowStockTable from "@/features/alerts/components/LowStockTable";
 import OutOfStockTable from "@/features/alerts/components/OutOfStockTable";
 import prisma from "@/lib/prisma";
 import { getSession } from "@/lib/session";
-import { Bell } from "lucide-react";
+import { Bell, CircleCheckBig } from "lucide-react";
 
 export default async function AlertsPage() {
   const session = await getSession();
@@ -39,17 +39,37 @@ export default async function AlertsPage() {
       <section className="mb-8 flex items-center justify-between gap-2 flex-wrap">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold mb-1">Alerts</h1>
-          <p className="text-muted-foreground">7 items need your attention</p>
+          <p className="text-muted-foreground">
+            {activeAlerts === 1
+              ? `${activeAlerts} item needs your attention`
+              : `${activeAlerts} items need your attention`}
+          </p>
         </div>
         <div className="bg-chart-5/20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium">
           <Bell className="size-4 text-chart-5" />
-          <p className="text-chart-5">{activeAlerts} Active Alerts</p>
+          <p className="text-chart-5">
+            {" "}
+            {activeAlerts === 1
+              ? `${activeAlerts} Active Alert`
+              : `${activeAlerts} Active Alerts`}
+          </p>
         </div>
       </section>
       <div className="space-y-6">
         <OutOfStockTable outOfStockProducts={outOfStockProducts} />
         <LowStockTable lowStockProducts={lowStockProducts} />
       </div>
+      {activeAlerts === 0 && (
+        <div className="border rounded-xl p-10 text-center bg-card">
+          <div className="bg-chart-1/20 w-fit mx-auto p-4 rounded-full text-chart-1 mb-4">
+            <CircleCheckBig className="size-6" />
+          </div>
+          <h2 className="text-xl font-semibold">All Clear!</h2>
+          <p className="text-muted-foreground font-mono uppercase text-sm mt-2">
+            No active alerts. Everything is in stock.
+          </p>
+        </div>
+      )}
     </Container>
   );
 }

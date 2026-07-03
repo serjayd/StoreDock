@@ -6,9 +6,13 @@ import { LogOut } from "lucide-react";
 
 interface LogoutButtonProps {
   isCollapsed?: boolean;
+  buttonText?: string;
 }
 
-export default function LogoutButton({ isCollapsed }: LogoutButtonProps) {
+export default function LogoutButton({
+  isCollapsed,
+  buttonText,
+}: LogoutButtonProps) {
   const handleSignout = async () => {
     await signOut();
     window.location.href = "/";
@@ -21,6 +25,7 @@ export default function LogoutButton({ isCollapsed }: LogoutButtonProps) {
       onClick={() => handleSignout()}
     >
       <LogOut />
+      {buttonText}
     </Button>
   );
 }

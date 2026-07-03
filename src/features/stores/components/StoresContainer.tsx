@@ -32,9 +32,8 @@ export default async function StoresContainer() {
           </p>
 
           <p className="text-center text-sm mt-2">
-            You haven&apos;t created any stores yet.
-            <br /> Add your first store to start organizing products, shelves,
-            and inventory.
+            Add your first store to start organizing products, shelves, and
+            inventory.
           </p>
         </div>
       )}

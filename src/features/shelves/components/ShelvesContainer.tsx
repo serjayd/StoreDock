@@ -5,6 +5,7 @@ import DeleteShelfButton from "./DeleteShelfButton";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { updateShelf } from "../actions";
+import { Layers } from "lucide-react";
 
 interface ShelvesContainerProps {
   allShelves: {
@@ -142,14 +143,14 @@ export default function ShelvesContainer({
         );
       })}
       {allShelves.length === 0 && (
-        <div className="bg-card p-4 rounded-2xl col-span-3 border text-muted-foreground">
+        <div className="bg-card p-4 rounded-2xl col-span-3 border text-muted-foreground flex flex-col justify-center items-center">
+          <Layers className="text-muted-foreground size-8 mb-2" />
           <p className="text-center uppercase font-mono font-semibold">
             No shelves found
           </p>
 
           <p className="text-center text-sm mt-2">
-            You haven&apos;t created any shelves yet.
-            <br /> Add your first shelf to start organizing products.
+            Add your first shelf to start organizing products.
           </p>
         </div>
       )}
