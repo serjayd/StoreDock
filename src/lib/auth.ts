@@ -13,6 +13,7 @@ export const auth = betterAuth({
     enabled: true,
     // requireEmailVerification: true,
   },
+  trustedOrigins: ["http://localhost:3000", "https://store-dock.vercel.app"],
   user: {
     deleteUser: {
       enabled: true,
