@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check": "pnpm lint && pnpm tsc --noEmit"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@better-auth/stripe": "^1.6.20",
