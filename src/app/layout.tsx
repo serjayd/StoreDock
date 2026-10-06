@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={`${inter.variable} ${jetBrainsMono.variable}`}
       data-scroll-behavior="smooth"
-      <meta name="google-site-verification" content="googlea1c2eafa9cb78035.html" />
+      <meta name="google-site-verification" content="XK9h8vhrEMD_QJAceQXivhOBefRIdfWSldh2z4QyOlM" />
     >
       <body>
         {children}
